@@ -1,4 +1,4 @@
-const userModel = require("../models/userModel").userModel;
+import {userModel} from "../models/userModel";
 
 const getUserByEmailIdAndPassword = (email: string, password: string) => {
   let user = userModel.findOne(email);
