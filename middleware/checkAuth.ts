@@ -1,3 +1,5 @@
+import { Request, Response } from 'express';
+
 /*
 FIX ME (types) 😭
 */
