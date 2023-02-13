@@ -21,7 +21,7 @@ app.use(
       maxAge: 24 * 60 * 60 * 1000,
     },
   })
-);
+); // run on every single request
 
 import authRoute from "./routes/authRoute";
 import indexRoute from "./routes/indexRoute";
@@ -45,7 +45,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", indexRoute);
-app.use("/auth", authRoute);
+app.use("/auth", authRoute); // '/auth/login'
 
 app.listen(port, () => {
   console.log(`🚀 Server has started on port ${port}`);
