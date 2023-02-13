@@ -1,5 +1,6 @@
 import { Strategy as GitHubStrategy } from 'passport-github2';
 import { PassportStrategy } from '../../interfaces/index';
+import { VerifyCallback } from 'passport-oauth2';
 
 const githubStrategy: GitHubStrategy = new GitHubStrategy(
     {
@@ -10,7 +11,7 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
     },
     
     /* FIX ME 😭 */
-    async (req: any, accessToken: any, refreshToken: any, profile: any, done: any) => {},
+    async (req: Express.Request, accessToken: string, refreshToken: string, profile: any, done: VerifyCallback) => {},
 );
 
 const passportGitHubStrategy: PassportStrategy = {
@@ -19,3 +20,6 @@ const passportGitHubStrategy: PassportStrategy = {
 };
 
 export default passportGitHubStrategy;
+
+
+// type VerifyCallback = (err?: Error | null, user?: Express.User, info?: object) => void;
