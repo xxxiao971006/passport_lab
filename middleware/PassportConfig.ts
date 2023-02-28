@@ -2,6 +2,10 @@ import passport from 'passport';
 
 import { PassportStrategy } from '../interfaces';
 
+import passport from 'passport';
+
+import { PassportStrategy } from '../interfaces';
+
 export default class PassportConfig {
     /*
      FIX ME 😭
@@ -15,13 +19,22 @@ export default class PassportConfig {
      passport strategies are added when this class is created. ⭐️
     */
 
-    constructor(strategies: PassportStrategy[]) {
-        this._addStrategies(strategies);
-    }
+     private readonly strategies!: PassportStrategy[];
+     constructor(strategies: PassportStrategy[]) {
+        this.strategies = strategies;
+        this.addStrategies();
+     }
 
-    private _addStrategies(strategies: PassportStrategy[]): void {
-        strategies.forEach((passportStrategy: PassportStrategy) => {
+    private addStrategies(): void {
+        this.strategies.forEach((passportStrategy: PassportStrategy) => {
             passport.use(passportStrategy.name, passportStrategy.strategy);
         });
     }
+
+    getAddStrategies() {
+        return this.addStrategies
+    }
 }
+
+
+
