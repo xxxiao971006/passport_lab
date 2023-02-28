@@ -5,10 +5,15 @@ const getUserByEmailIdAndPassword = (email: string, password: string) => {
   if (user) {
     if (isUserValid(user, password)) {
       return user;
-    }
+    } 
   }
-  return null;
+  return null
 };
+
+const getUserRole = (user: Express.User) => {
+  return user.role
+}
+
 const getUserById = (id:any) => {
   let user = userModel.findById(id);
   if (user) {
@@ -24,4 +29,5 @@ function isUserValid(user: any, password: string) {
 export {
   getUserByEmailIdAndPassword,
   getUserById,
+  getUserRole
 };

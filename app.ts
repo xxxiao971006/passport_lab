@@ -3,6 +3,9 @@ import expressLayouts from "express-ejs-layouts";
 import session from "express-session";
 import path from "path";
 import passportMiddleware from './middleware/passportMiddleware';
+import cookieParser from 'cookie-parser';
+import passport from 'passport';
+
 
 const port = process.env.port || 8000;
 
@@ -19,9 +22,14 @@ app.use(
       httpOnly: true,
       secure: false,
       maxAge: 24 * 60 * 60 * 1000,
+      
     },
   })
+
 ); // run on every single request
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 import authRoute from "./routes/authRoute";
 import indexRoute from "./routes/indexRoute";
@@ -32,15 +40,17 @@ app.use(expressLayouts);
 app.use(express.urlencoded({ extended: true }));
 passportMiddleware(app);
 
-app.use((req, res, next) => {
-  console.log(`User details are: `);
-  console.log(req.user);
 
-  console.log("Entire session object:");
-  console.log(req.session);
 
-  console.log(`Session details are: `);
-  console.log((req.session as any).passport);
+app.use((req: Express.Request, res: Express.Response, next: (err?: any) => void) => {
+  // console.log(`User details are: `);
+  // console.log(req.user);
+
+  // console.log("Entire session object:");
+  // console.log(req.session);
+
+  // console.log(`Session details are: `);
+  // console.log((req.session as any).passport);
   next();
 });
 

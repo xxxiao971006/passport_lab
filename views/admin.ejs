@@ -1,0 +1,21 @@
+<h1 class="mt-4">Admin Dashboard</h1>
+<p class="lead mb-3">Welcome <%= user.name %>
+</p>
+
+<p class="lead mb-3">Current Active Session:</p>
+<% for(const session of activeSessions) { %>
+    
+    <p class="lead mb-3">SessionID: <%= session %>
+    </p>
+
+    <p class="lead mb-3">UserID: <%= user.id %>
+    </p>
+
+    <form action="/revoke" method="POST">
+        <button type="submit" name="revoke" value="<%= session %>">Revoke Session</button>
+    </form>
+
+<% } %>
+
+
+

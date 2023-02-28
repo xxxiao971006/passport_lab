@@ -1,3 +1,9 @@
 <h1 class="mt-4">Dashboard</h1>
 <p class="lead mb-3">Welcome <%= user.name %></p>
+<% if(userRole === "admin") { %>
+    <form action="/dashboard/admin" method="GET">
+        <button type="submit" name="admin" value="admin">Go to Admin Dashboard</button>
+    </form>
+<% } %>
+ 
 <a href="/auth/logout" class="btn btn-secondary">Logout</a>
